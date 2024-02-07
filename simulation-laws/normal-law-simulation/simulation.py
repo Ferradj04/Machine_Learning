@@ -2,14 +2,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Generate a random data
-np.random.seed(42)  # For reproductibilty results
+np.random.seed(42)  #For reproductibilty results
 #Sample initialization
-sample_50 = np.random.normal(loc=0, scale=2, size=50)
-sample_100 = np.random.normal(loc=0, scale=2, size=100)
-sample_1000 = np.random.normal(loc=0, scale=2, size=1000)
+sample_10000 = np.random.normal(loc=0, scale=2, size=10000)
 #Set colors
-background = "#1d1d1d"
-stroke = "#00CFE0"
+background = "#FFFFFF"
+stroke = "#000000"
+font = {"fontname":"monospace"}
 #Definition of a the simulation model function
 def simulation_normal_law_non_biased_estimator(data):
     # Calculate mean process
@@ -23,17 +22,15 @@ def simulation_normal_law_non_biased_estimator(data):
     xmin, xmax = plt.xlim()
     x = np.linspace(xmin,xmax,100)
     p = (1 / np.sqrt(2 * np.pi * variance_estimate)) * np.exp(-0.5 * ((x - mean_value) / np.sqrt(variance_estimate))**2)
-    plt.plot(x,p,'k',linewidth=1.0,label='Normal estimated Law',color=stroke)
+    plt.plot(x,p,'k',linewidth=1.0,label='Normal estimated Law', color=stroke)
 
-    plt.title('Estimated non biased variance of a normal law')
+    plt.title('Estimated non biased variance of a normal law',**font)
     plt.legend()
     plt.show()
-
+    print(sample_10000)
     # Afficher la moyenne et la variance estimée
     print(f'Emprical mean : {mean_value}')
     print(f'Non-biased estimated variance : {variance_estimate}')
 
 #test the simulation model 
-simulation_normal_law_non_biased_estimator(sample_50)
-simulation_normal_law_non_biased_estimator(sample_100)
-simulation_normal_law_non_biased_estimator(sample_1000)
+simulation_normal_law_non_biased_estimator(sample_10000)
